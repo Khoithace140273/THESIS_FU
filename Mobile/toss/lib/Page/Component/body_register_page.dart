@@ -244,7 +244,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           'Tên Đăng Nhập',
                           _focusNodesUserName.hasFocus
                               ? ThemeColor()
-                              : IconColorUnfocus(),
+                              : IconColorUnFocus(),
                           'Tên Đăng Nhập'),
                       validator: (val) {
                         if (val!.isEmpty) {
@@ -271,7 +271,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                               'Mật khẩu',
                               _focusNodesPassword.hasFocus
                                   ? ThemeColor()
-                                  : IconColorUnfocus(),
+                                  : IconColorUnFocus(),
                               'Mật khẩu')
                           .copyWith(
                         suffixIcon: IconButton(
@@ -281,7 +281,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                                   : Icons.visibility,
                               color: _focusNodesPassword.hasFocus
                                   ? ThemeColor()
-                                  : IconColorUnfocus(),
+                                  : IconColorUnFocus(),
                             ),
                             onPressed: () {
                               setState(() {
@@ -290,22 +290,28 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                             }),
                       ),
                       validator: (val) {
+                        String errMs = '';
                         if (val!.isEmpty) {
                           return 'Vui lòng điền đầy đủ mật khẩu';
                         } else if (!RegExp(r'^(?=.*?[A-Z])').hasMatch(val)) {
-                          return 'Password contain at least 1 Upper case';
+                          errMs.isEmpty? errMs+='':errMs+='\n';
+                          errMs+='Mật khẩu cần ít nhất 1 chữ in hoa';
                         } else if (!RegExp(r'^(?=.*[a-z])').hasMatch(val)) {
-                          return 'Password contain at least 1 Lower case';
+                          errMs.isEmpty? errMs+='':errMs+='\n';
+                          errMs+= 'Mật khẩu cần ít nhất 1 chữ thường';
                         } else if (!RegExp(r'^(?=.*?[0-9])').hasMatch(val)) {
-                          return 'Password contain at least 1 digit';
+                          errMs.isEmpty? errMs+='':errMs+='\n';
+                          errMs+= 'Mật khẩu cần ít nhất 1 chữ số';
                         } else if (!RegExp(r'^(?=.*?[!@#\$&*.~])')
                             .hasMatch(val)) {
-                          return 'Password contain at least 1 Special character';
+                          errMs.isEmpty? errMs+='':errMs+='\n';
+                          errMs+= 'Password contain at least 1 Special character';
                         } else if (!RegExp(r'^.{8,}').hasMatch(val)) {
-                          return 'Password contain at least 8 characters in length';
+                          errMs.isEmpty? errMs+='':errMs+='\n';
+                          errMs+= 'Password contain at least 8 characters in length';
                         } else {
-                          return null;
                         }
+                        return errMs.isNotEmpty?errMs:null;
                       },
                       onSaved: (val) {
                         // password = val!;
@@ -324,7 +330,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                               'Nhập lại',
                               _focusNodesConfirmPassword.hasFocus
                                   ? ThemeColor()
-                                  : IconColorUnfocus(),
+                                  : IconColorUnFocus(),
                               'Nhập lại')
                           .copyWith(
                         suffixIcon: IconButton(
@@ -334,7 +340,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                                   : Icons.visibility,
                               color: _focusNodesConfirmPassword.hasFocus
                                   ? ThemeColor()
-                                  : IconColorUnfocus(),
+                                  : IconColorUnFocus(),
                             ),
                             onPressed: () {
                               setState(() {
@@ -345,19 +351,8 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                       validator: (val) {
                         if (val!.isEmpty) {
                           return 'Vui lòng điền đầy đủ nhập lại mật khẩu';
-                        } else if (!RegExp(r'^(?=.*?[A-Z])').hasMatch(val)) {
-                          return 'Password contain at least 1 Upper case';
-                        } else if (!RegExp(r'^(?=.*[a-z])').hasMatch(val)) {
-                          return 'Password contain at least 1 Lower case';
-                        } else if (!RegExp(r'^(?=.*?[0-9])').hasMatch(val)) {
-                          return 'Password contain at least 1 digit';
-                        } else if (!RegExp(r'^(?=.*?[!@#\$&*.~])')
-                            .hasMatch(val)) {
-                          return 'Password contain at least 1 Special character';
-                        } else if (!RegExp(r'^.{8,}').hasMatch(val)) {
-                          return 'Password contain at least 8 characters in length';
-                        } else if (_passwordController.text !=
-                            _passwordConfirmController.text) {
+                        } else if (_password !=
+                            _confirmPassword) {
                           return "Password does not match";
                         } else {
                           return null;
@@ -375,7 +370,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           'Họ và tên',
                           _focusNodesName.hasFocus
                               ? ThemeColor()
-                              : IconColorUnfocus(),
+                              : IconColorUnFocus(),
                           'Họ và tên'),
                       validator: (val) {
                         if (val!.isEmpty) {
@@ -415,7 +410,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                                 _valueGender,
                                 _focusNodesGender.hasFocus
                                     ? ThemeColor()
-                                    : IconColorUnfocus(),
+                                    : IconColorUnFocus(),
                                 'Giới tính'),
                           ),
                         ),
@@ -446,7 +441,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                               children: [
                                 Icon(
                                   Icons.cake,
-                                  color: IconColorUnfocus(),
+                                  color: IconColorUnFocus(),
                                 ),
                                 SizedBox(
                                   width: 20,
@@ -474,13 +469,13 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           'Email',
                           _focusNodesEmail.hasFocus
                               ? ThemeColor()
-                              : IconColorUnfocus(),
+                              : IconColorUnFocus(),
                           'Email'),
                       onChanged: (email) {
                         setState(() {
                           if (email.isNotEmpty) {
                             if (RegExp(
-                                    r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+$")
                                 .hasMatch(email)) {
                               _isVerifyVisibility = true;
                             } else {
@@ -495,11 +490,12 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                         if (val!.isEmpty) {
                           return 'Vui lòng điền đầy đủ thông tin';
                         } else if (!RegExp(
-                                r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+$")
                             .hasMatch(val)) {
                           return 'Vui lòng điền đúng địa chỉ email';
-                        } else
+                        } else {
                           return null;
+                        }
                       },
                       onSaved: (val) {
                         //username = val!;
@@ -598,7 +594,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           'Số điện thoại',
                           _focusNodesPhone.hasFocus
                               ? ThemeColor()
-                              : IconColorUnfocus(),
+                              : IconColorUnFocus(),
                           'Số điện thoại'),
                       validator: (val) {
                         if (val!.isEmpty) {
@@ -625,7 +621,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           'Căn cước công dân/Chứng minh thư',
                           _focusNodesIdentity.hasFocus
                               ? ThemeColor()
-                              : IconColorUnfocus(),
+                              : IconColorUnFocus(),
                           'Căn cước công dân/Chứng minh thư'),
                       validator: (val) {
                         if (val!.isEmpty) {
@@ -668,7 +664,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           _valueProvince.name!,
                           // _focusNodesCity.hasFocus
                           //     ? ThemeColor():
-                          IconColorUnfocus(),
+                          IconColorUnFocus(),
                           'Tỉnh/Thành phố'),
                     ),
                   ),
@@ -696,7 +692,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           _valueDistrict.name!,
                           // _focusNodesCity.hasFocus
                           //     ? ThemeColor():
-                          IconColorUnfocus(),
+                          IconColorUnFocus(),
                           'Quận/Huyện'),
                     ),
                   ),
@@ -722,7 +718,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           _valueCWT.name!,
                           // _focusNodesCity.hasFocus
                           //     ? ThemeColor():
-                          IconColorUnfocus(),
+                          IconColorUnFocus(),
                           'Phường/Xã/Thị Trấn'),
                     ),
                   ),
@@ -737,7 +733,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
                           'Số nhà, (toà nhà, số tầng), tên đường',
                           _focusNodesLocation.hasFocus
                               ? ThemeColor()
-                              : IconColorUnfocus(),
+                              : IconColorUnFocus(),
                           'Số nhà, (toà nhà, số tầng), tên đường'),
                       validator: (val) {
                         if (val!.isEmpty) {
@@ -793,7 +789,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
           LengthLimitingTextInputFormatter(1)
         ],
         decoration: buildVerifyInputDecoration(
-          f.hasFocus ? ThemeColor() : IconColorUnfocus(),
+          f.hasFocus ? ThemeColor() : IconColorUnFocus(),
         ));
   }
 

@@ -1,3 +1,5 @@
+import 'package:toss/Constants/global.dart';
+
 import 'Entity/user_model.dart';
 
 class UserProfileModel{
@@ -6,7 +8,7 @@ class UserProfileModel{
 
   UserProfileModel() {
     _isLoading = false;
-    _user = UserModel.empty();
+    _user = Global.user!;
   }
 
   bool get isLoading => _isLoading!;

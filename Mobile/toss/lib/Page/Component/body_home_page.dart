@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toss/Features/button_decoration.dart';
-import 'package:toss/Page/user_profile_page.dart';
+import 'package:toss/Page/Component/body_user_profile_page.dart';
 
 class BodyHomePage extends StatelessWidget {
   const BodyHomePage({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class BodyHomePage extends StatelessWidget {
             SizedBox(
               height: size.height/15,
               width: size.width*0.75,
-                child: buildHomePageButton(context, 'assets/user (1).png', 'Hồ sơ cá nhân', const UserProfile())
+                child: buildHomePageButton(context, 'assets/user (1).png', 'Hồ sơ cá nhân', const BodyUserProfile())
             ),
             const SizedBox(
               height: 15,

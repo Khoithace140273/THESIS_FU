@@ -54,7 +54,7 @@ class _BodyLoginState extends State<BodyLogin> implements LoginView {
     _focusNodesPassword.addListener(() => setState(() {
       _keyboardVisible = !_keyboardVisible;
         }));
-    KeyboardVisibilityController().onChange.listen((visble) {
+    KeyboardVisibilityController().onChange.listen((visible) {
       _keyboardVisible = KeyboardVisibilityController().isVisible;
     });
   }
@@ -145,7 +145,7 @@ class _BodyLoginState extends State<BodyLogin> implements LoginView {
                         'Số điện thoại / Email / Tên Đăng Nhập',
                         _focusNodesUserName.hasFocus
                             ? ThemeColor()
-                            : IconColorUnfocus(),
+                            : IconColorUnFocus(),
                         'Số điện thoại / Email / Tên Đăng Nhập'),
                     validator: (val) {
                       if (val!.isEmpty) {
@@ -174,7 +174,7 @@ class _BodyLoginState extends State<BodyLogin> implements LoginView {
                             'Mật khẩu',
                             _focusNodesPassword.hasFocus
                                 ? ThemeColor()
-                                : IconColorUnfocus(),
+                                : IconColorUnFocus(),
                             'Mật khẩu')
                         .copyWith(
                       suffixIcon: IconButton(
@@ -185,7 +185,7 @@ class _BodyLoginState extends State<BodyLogin> implements LoginView {
                                 : Icons.visibility,
                             color: _focusNodesPassword.hasFocus
                                 ? ThemeColor()
-                                : IconColorUnfocus(),
+                                : IconColorUnFocus(),
                           ),
                           onPressed: () {
                             setState(() {
