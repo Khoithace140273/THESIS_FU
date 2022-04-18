@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toss/Features/customize_app_bar.dart';
 import 'package:toss/Page/component/body_register_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -12,22 +13,8 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text('Tạo tài khoản mới', style: TextStyle(color: Colors.black)),
-        centerTitle: true,
-      ),
-      body: BodyRegister(),
+      appBar: BuildAppBar(context, 'Tạo tài khoản mới'),
+      body: const BodyRegister(),
       resizeToAvoidBottomInset: true,
     );
   }
