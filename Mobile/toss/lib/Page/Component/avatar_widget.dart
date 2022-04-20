@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:toss/Features/color.dart';
 
-class ProfileWidget extends StatelessWidget {
+class AvatarWidget extends StatelessWidget {
   final String imagePath;
   final bool isEdit;
   final VoidCallback onClicked;
 
-  const ProfileWidget({
+  const AvatarWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
@@ -53,7 +54,7 @@ class ProfileWidget extends StatelessWidget {
           all: 8,
           child: Icon(
             isEdit ? Icons.add_a_photo : Icons.edit,
-            color: Colors.white,
+            color: IconColorUnFocus(),
             size: 20,
           ),
         ),

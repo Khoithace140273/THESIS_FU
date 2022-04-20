@@ -14,9 +14,7 @@ textInButton(String content) => Text(
 buildHomePageButton(
         BuildContext context, String iconUrl, String title, Widget page) =>
     ElevatedButton.icon(
-        onPressed: page!=null?
-        () => Navigator.push(context, MaterialPageRoute(builder: (context) => page))
-        : null,
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => page)),
       icon: Image.asset(iconUrl),
       style: TextButton.styleFrom(
           backgroundColor: Colors.white, alignment: Alignment.centerLeft),

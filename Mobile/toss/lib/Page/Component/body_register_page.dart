@@ -793,7 +793,7 @@ class _BodyRegisterState extends State<BodyRegister> implements RegisterView {
         ));
   }
 
-  onchangedGenderSelected(String selectedGender) {
+  onChangedGenderSelected(String selectedGender) {
     setState(() {
       _valueGender = selectedGender;
     });
